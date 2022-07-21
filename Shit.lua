@@ -324,10 +324,10 @@ function Library:CreateWindow(title)
 
 			Background.Name = "Background"
 			Background.Parent = ToggleElement
-			Background.BackgroundColor3 = Color3.fromRGB(42, 203, 85)
+			Background.BackgroundColor3 = Color3.fromRGB(210, 210, 210)
 			Background.BorderSizePixel = 0
-			Background.Position = UDim2.new(0, 260, 0, 10)
-			Background.Size = UDim2.new(0, 60, 0, 20)
+			Background.Position = UDim2.new(0, 230, 0, 10)
+			Background.Size = UDim2.new(0, 50, 0, 20)
 			Background.Font = Enum.Font.SourceSans
 			Background.Text = ""
 			Background.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -342,7 +342,7 @@ function Library:CreateWindow(title)
 			Toggle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			Toggle.BorderSizePixel = 0
 			Toggle.Position = UDim2.new(0, 260, 0, 10)
-			Toggle.Size = UDim2.new(0, 20, 0, 18)
+			Toggle.Size = UDim2.new(0, 20, 0, 20)
 			Toggle.Font = Enum.Font.SourceSans
 			Toggle.Text = ""
 			Toggle.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -350,16 +350,16 @@ function Library:CreateWindow(title)
 			Toggle.TextSize = 14.000
 			Toggle.TextWrapped = true
 
-			Instance.new("UICorner", Toggle).CornerRadius = UDim.new(0, 4)
+			Instance.new("UICorner", Toggle).CornerRadius = UDim.new(1, 0)
 
 			local toggled = false
 			Click.MouseButton1Down:Connect(function()
 				if toggled == false then
-					TS:Create(Toggle, TweenInfo.new(0.25), {BackgroundColor3 = Color3.fromRGB(200, 200, 200)}):Play()
-					TS:Create(Background, TweenInfo.new(0.25), {Position = UDim2.new(0, 2, 0, 2)}):Play()
+					TS:Create(Background, TweenInfo.new(0.25), {BackgroundColor3 = Color3.fromRGB(47, 203, 85)}):Play()
+					TS:Create(Toggle, TweenInfo.new(0.25), {Position = UDim2.new(0, 231, 0, 10)}):Play()
 				elseif toggled == true then
-					TS:Create(Toggle, TweenInfo.new(0.25), {BackgroundColor3 = Color3.fromRGB(47, 203, 85)}):Play()
-					TS:Create(Background, TweenInfo.new(0.25), {Position = UDim2.new(1, -20, 0, 2)}):Play()
+					TS:Create(Background, TweenInfo.new(0.25), {BackgroundColor3 = Color3.fromRGB(210, 210, 210)}):Play()
+					TS:Create(Toggle, TweenInfo.new(0.25), {Position = UDim2.new(0, 260, 0, 10)}):Play()
 				end
 				toggled = not toggled
 				pcall(callback, toggled)
@@ -369,11 +369,11 @@ function Library:CreateWindow(title)
 			end
 			function ToggleFunction:ChangeState(state)
 				if state == true then
-                    TS:Create(Toggle, TweenInfo.new(0.25), {BackgroundColor3 = Color3.fromRGB(200, 200, 200)}):Play()
-					TS:Create(Background, TweenInfo.new(0.25), {Position = UDim2.new(0, 2, 0, 2)}):Play()
+                   	TS:Create(Background, TweenInfo.new(0.25), {BackgroundColor3 = Color3.fromRGB(47, 203, 85)}):Play()
+					TS:Create(Toggle, TweenInfo.new(0.25), {Position = UDim2.new(0, 231, 0, 10)}):Play()
 				elseif state == false then
-				    TS:Create(Toggle, TweenInfo.new(0.25), {BackgroundColor3 = Color3.fromRGB(47, 203, 85)}):Play()
-					TS:Create(Background, TweenInfo.new(0.25), {Position = UDim2.new(1, -20, 0, 2)}):Play()
+					TS:Create(Background, TweenInfo.new(0.25), {BackgroundColor3 = Color3.fromRGB(210, 210, 210)}):Play()
+					TS:Create(Toggle, TweenInfo.new(0.25), {Position = UDim2.new(0, 260, 0, 10)}):Play()
 				end
 				toggled = not toggled
 				pcall(callback, toggled)
@@ -382,11 +382,11 @@ function Library:CreateWindow(title)
 				UIS.InputBegan:Connect(function(key, gameProcessedEvent)
 					if key.KeyCode == Bind then
 						if toggled == false then
-							TS:Create(Toggle, TweenInfo.new(0.25), {BackgroundColor3 = Color3.fromRGB(200, 200, 200)}):Play()
-					        TS:Create(Background, TweenInfo.new(0.25), {Position = UDim2.new(0, 2, 0, 2)}):Play()
-						elseif toggled == true then
-                            TS:Create(Toggle, TweenInfo.new(0.25), {BackgroundColor3 = Color3.fromRGB(47, 203, 85)}):Play()
-					        TS:Create(Background, TweenInfo.new(0.25), {Position = UDim2.new(1, -20, 0, 2)}):Play()
+							TS:Create(Background, TweenInfo.new(0.25), {BackgroundColor3 = Color3.fromRGB(47, 203, 85)}):Play()
+					        TS:Create(Toggle, TweenInfo.new(0.25), {Position = UDim2.new(0, 231, 0, 10)}):Play()
+				        elseif toggled == true then
+					        TS:Create(Background, TweenInfo.new(0.25), {BackgroundColor3 = Color3.fromRGB(210, 210, 210)}):Play()
+					        TS:Create(Toggle, TweenInfo.new(0.25), {Position = UDim2.new(0, 260, 0, 10)}):Play()
 						end
 						toggled = not toggled
 						pcall(callback, toggled)
