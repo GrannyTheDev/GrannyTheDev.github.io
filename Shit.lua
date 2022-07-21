@@ -87,6 +87,8 @@ function Library:CreateWindow(title)
 	CloseButton.Position = UDim2.new(0.95, 0,0.016, 0)
 	CloseButton.Size = UDim2.new(0, 25, 0, 25)
 	CloseButton.Text = utf8.char(10060)
+	CloseButton.TextScaled = true
+	CloseButton.TextWrapped = true
 	CloseButton.MouseButton1Click:Connect(function()
 		DarkLib:Destroy()
 	end)
