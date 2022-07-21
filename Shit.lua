@@ -1,11 +1,5 @@
 for i,v in pairs(game.CoreGui:GetChildren()) do
-	if v:IsA("ScreenGui") and v.Name == "DarkLib" then
-		v:Destroy()
-	end
-	if v:IsA("ScreenGui") and v.Name == "Gui" then
-		v:Destroy()
-	end
-	if v:IsA("ScreenGui") and v.Name == "ScreenGui" then
+	if v:IsA("ScreenGui") and v.Name == "DarkLib" or v.Name == "Gui" or v.Name == "ScreenGui" then
 		v:Destroy()
 	end
 end
@@ -298,7 +292,6 @@ function Library:CreateWindow(title)
 			local Title = Instance.new("TextLabel")
 			local Background = Instance.new("TextButton")
 			local Toggle = Instance.new("TextButton")
-			local Border = Instance.new("UIStroke")
 			local Click = Instance.new("TextButton")
 
 			ToggleElement.Name = txt
@@ -329,12 +322,27 @@ function Library:CreateWindow(title)
 			Title.TextSize = 18.000
 			Title.TextXAlignment = Enum.TextXAlignment.Left
 
+			Background.Name = "Background"
+			Background.Parent = ToggleElement
+			Background.BackgroundColor3 = Color3.fromRGB(42, 203, 85)
+			Background.BorderSizePixel = 0
+			Background.Position = UDim2.new(0, 260, 0, 10)
+			Background.Size = UDim2.new(0, 60, 0, 20)
+			Background.Font = Enum.Font.SourceSans
+			Background.Text = ""
+			Background.TextColor3 = Color3.fromRGB(255, 255, 255)
+			Background.TextScaled = true
+			Background.TextSize = 14.000
+			Background.TextWrapped = true
+
+			Instance.new("UICorner", Background).CornerRadius = UDim.new(1, 0)
+
 			Toggle.Name = "Toggle"
 			Toggle.Parent = ToggleElement
-			Toggle.BackgroundColor3 = Color3.fromRGB(21, 21, 21)
+			Toggle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			Toggle.BorderSizePixel = 0
 			Toggle.Position = UDim2.new(0, 260, 0, 10)
-			Toggle.Size = UDim2.new(0, 20, 0, 20)
+			Toggle.Size = UDim2.new(0, 20, 0, 18)
 			Toggle.Font = Enum.Font.SourceSans
 			Toggle.Text = ""
 			Toggle.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -344,24 +352,16 @@ function Library:CreateWindow(title)
 
 			Instance.new("UICorner", Toggle).CornerRadius = UDim.new(0, 4)
 
-			Border.Name = "Border"
-			Border.Parent = Toggle
-			Border.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-			Border.Color = Color3.fromRGB(255, 255, 255)
-			Border.LineJoinMode = Enum.LineJoinMode.Round
-			Border.Thickness = 1
-
 			local toggled = false
 			Click.MouseButton1Down:Connect(function()
 				if toggled == false then
-					TS:Create(Toggle, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(46, 250, 88)}):Play()
-					TS:Create(Toggle, TweenInfo.new(0.2), {BackgroundTransparency = 0}):Play()
+					TS:Create(Toggle, TweenInfo.new(0.25), {BackgroundColor3 = Color3.fromRGB(200, 200, 200)}):Play()
+					TS:Create(Background, TweenInfo.new(0.25), {Position = UDim2.new(0, 2, 0, 2)}):Play()
 				elseif toggled == true then
-					TS:Create(Toggle, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(21, 21, 21)}):Play()
-					TS:Create(Toggle, TweenInfo.new(0.2), {BackgroundTransparency = 1}):Play()
+					TS:Create(Toggle, TweenInfo.new(0.25), {BackgroundColor3 = Color3.fromRGB(47, 203, 85)}):Play()
+					TS:Create(Background, TweenInfo.new(0.25), {Position = UDim2.new(1, -20, 0, 2)}):Play()
 				end
 				toggled = not toggled
-	 			Toggle.Text = toggled and utf8.char(10003) or ""
 				pcall(callback, toggled)
 			end)
 			function ToggleFunction:UpdateText(txt)
@@ -369,28 +369,26 @@ function Library:CreateWindow(title)
 			end
 			function ToggleFunction:ChangeState(state)
 				if state == true then
-					TS:Create(Toggle, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(46, 250, 88)}):Play()
-					TS:Create(Toggle, TweenInfo.new(0.2), {BackgroundTransparency = 0}):Play()
+                    TS:Create(Toggle, TweenInfo.new(0.25), {BackgroundColor3 = Color3.fromRGB(200, 200, 200)}):Play()
+					TS:Create(Background, TweenInfo.new(0.25), {Position = UDim2.new(0, 2, 0, 2)}):Play()
 				elseif state == false then
-					TS:Create(Toggle, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(21, 21, 21)}):Play()
-					TS:Create(Toggle, TweenInfo.new(0.2), {BackgroundTransparency = 1}):Play()
+				    TS:Create(Toggle, TweenInfo.new(0.25), {BackgroundColor3 = Color3.fromRGB(47, 203, 85)}):Play()
+					TS:Create(Background, TweenInfo.new(0.25), {Position = UDim2.new(1, -20, 0, 2)}):Play()
 				end
 				toggled = not toggled
-				Toggle.Text = toggled and utf8.char(10003) or ""
 				pcall(callback, toggled)
 			end
 			function ToggleFunction:Keybind(Bind)
 				UIS.InputBegan:Connect(function(key, gameProcessedEvent)
 					if key.KeyCode == Bind then
 						if toggled == false then
-							TS:Create(Toggle, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(46, 250, 88)}):Play()
-							TS:Create(Toggle, TweenInfo.new(0.2), {BackgroundTransparency = 0}):Play()							
+							TS:Create(Toggle, TweenInfo.new(0.25), {BackgroundColor3 = Color3.fromRGB(200, 200, 200)}):Play()
+					        TS:Create(Background, TweenInfo.new(0.25), {Position = UDim2.new(0, 2, 0, 2)}):Play()
 						elseif toggled == true then
-							TS:Create(Toggle, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(21, 21, 21)}):Play()
-							TS:Create(Toggle, TweenInfo.new(0.2), {BackgroundTransparency = 1}):Play()
+                            TS:Create(Toggle, TweenInfo.new(0.25), {BackgroundColor3 = Color3.fromRGB(47, 203, 85)}):Play()
+					        TS:Create(Background, TweenInfo.new(0.25), {Position = UDim2.new(1, -20, 0, 2)}):Play()
 						end
 						toggled = not toggled
-						Toggle.Text = toggled and utf8.char(10003) or ""
 						pcall(callback, toggled)
 					end
 				end)
