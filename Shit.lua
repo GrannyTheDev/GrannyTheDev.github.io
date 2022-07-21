@@ -18,7 +18,7 @@ function Library:CreateWindow(title)
 	local MainFrame = Instance.new("Frame")
 	local TabHolder = Instance.new("ScrollingFrame")
 	local TabListen = Instance.new("UIListLayout")
-	local CloseButton = Instance.new("ImageButton")
+	local CloseButton = Instance.new("TextButton")
 	local Title = Instance.new("TextLabel")
 	local Pages = Instance.new("Folder")
 
@@ -86,7 +86,7 @@ function Library:CreateWindow(title)
 	CloseButton.BorderSizePixel = 0
 	CloseButton.Position = UDim2.new(0.95, 0,0.016, 0)
 	CloseButton.Size = UDim2.new(0, 25, 0, 25)
-	CloseButton.Image = "rbxassetid://6236220207"
+	CloseButton.Text = utf8.char(10060)
 	CloseButton.MouseButton1Click:Connect(function()
 		DarkLib:Destroy()
 	end)
